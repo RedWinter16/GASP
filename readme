@@ -1,0 +1,13 @@
+GASP_MAin script will master the analysis of the JonahVentures data. It will call all other supplementary functions to complete the necessary tasks outlined bellow:
+Import the Jonah Data and create a new directory with todays date to store output files (GASP_SetWorkspace.R).
+Calculate the relative abundace of each taxa (the number of reads of a givin taxa divided by the total reads per sample) (GASP_getdata.R)
+Remove the control samples and the samples from collect one from the analysis (GASP_Main.R)
+Parse through  the data using various stringencies on both the number of replicates and the minimum relative abundance:
+    i.e. remove all taxa that do not meet a minimum relative abundance of 0.1% in 2 of 3 lab replicates (GASP_CheckLabreps.R).
+  In this version the ablitly to check site replicates has been commented out but can be added back in. Check the GASP_Output is called in the check lab replicates section (GASP_CheckSitereps.R).
+Save the output of the analysis while also passing it to another function that will save individual files based on the site with a column added that lists the species name is present in the taxa information. It will also tally the number of taxa found per site based on the stringency selected to allow for cross checking of the code ouput (GASP_Output.R).
+The per site output is then pased to a funciton that will add a take the species column of the data table and query the GBIF API for incidents of this species. The ability to query by genus has been commented out, it is to broad and takes too long. The output is stored into a table and saved (GASP_Geolocate.R).
+The whole process takes approximatly 3 hours to run, at the end a simple plot of the US is made for each file of geolocation data with points indicating a report of the speceis and contour lines based on a 2d kernel density estimation to help indicate where most of the points have plotted (GASP_GeoMap.R).
+
+One function not mention but used throughout the process is GASP_RMzeroTaxa.R, this will remove any rows from a table where the relative abundance across all columns sums to zero.
+
