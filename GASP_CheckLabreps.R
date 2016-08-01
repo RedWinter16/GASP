@@ -10,7 +10,7 @@ GASP_CheckLabreps<-function(df, minimum, replicates,index)
 
       for (i in 1:length(vec))
       {
-        if (vec[i] <= (ncol(df)-index))
+        if (vec[i] <= (ncol(df)-(index-1)))
         {
                 for (j in 1:nrow(df))
                 {
